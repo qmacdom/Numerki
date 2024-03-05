@@ -114,6 +114,6 @@ print(f"Wartość wielomianu o współczynnikach {wsp} w punkcie {x} wynosi", Sc
 print(metodaBisekcjiIteracje(kwadratowa, -1, 8, 200))
 print(metodaBisekcjiDokladnosc(kwadratowa, -1, 8, 0.0000001))
 print(medtodaSiecznychIteracje(kwadratowa, -2.1, 10.5, 2000))
-print(medtodaSiecznychDokladnosc(kwadratowa, -2.1, 10.5, 0.01))
+#print(medtodaSiecznychDokladnosc(kwadratowa, -2.1, 10.5, 0.01))
 
 narysujWykres(kwadratowa, -20, 20)
