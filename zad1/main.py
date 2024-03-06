@@ -76,6 +76,7 @@ funkcje = []
 print(metodaBisekcji.metodaBisekcjiIteracje(kwadratowa, -19.8746869, 20, 200000))
 print(metodaBisekcji.metodaBisekcjiDokladnosc(kwadratowa, -20, 20, 0.00000000001))
 print(metodaSiecznych.medtodaSiecznychIteracje(kwadratowa, -20, 20, 12))
+print(metodaSiecznych.medtodaSiecznychIteracje(kwadratowa, -20, 20, 13))
 print(metodaSiecznych.medtodaSiecznychDokladnosc(kwadratowa, -20, 20, 0.00000000001))
 
 narysujWykres(kwadratowa, -20, 20)
