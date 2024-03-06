@@ -1,6 +1,9 @@
 import matplotlib.pyplot as plt
+import metodaBisekcji
+import metodaSiecznych
+import wielomian
 
-
+@staticmethod
 def SchematHornera(x, wspTab, length):
     wynik = wspTab[0]  # dzieki temu współczynnik ten
 
@@ -36,83 +39,43 @@ def kwadratowa(_x):
     return (_x - 5) * (_x + 2) * (_x - 7)
 
 
-def metodaBisekcjiDokladnosc(f, a, b, epislon):
-    if (f(a) * f(b) < 0):
-        x = float(a + b) / 2
-        i = 0
-        while (abs(a - b) > epislon):
-            i = i + 1
-            x = float(a + b) / 2
-            if (f(x) == 0):
-                return x, i
-            if (f(a) * f(x) < 0):
-                b = x
-            else:
-                a = x
-        return x, i
-    else:
-        print("Funkcja na tym przedziale nie przechodzi przez 0")
-        return "Błąd"
-
-
-def metodaBisekcjiIteracje(f, a, b, maxI):
-    i = maxI
-    if (maxI < 0):
-        return "Liczba iteracji ma być dodatnia!"
-    if (f(a) * f(b) < 0):
-        x = float(a + b) / 2
-        while (maxI > 0):
-            maxI = maxI - 1
-            x = float(a + b) / 2
-            if (f(x) == 0):
-                return x
-            if (f(a) * f(x) < 0):
-                b = x
-            else:
-                a = x
-        return x, maxI
-    else:
-        print("Wartości funkcji na krańcach tego przedziału mają ten sam znak!")
-        return "Błąd"
-
-
-def medtodaSiecznychIteracje(f, a, b, maxI):
-    # if ((b < a) | (f(a) * f(b) < 0)):
-    #     return "Błąd"
-    x1, x2, i = a, b, maxI
-    while (maxI > 0):
-        maxI = maxI - 1
-        temp = x1
-        x1 = x1 - ((f(x1) * (x1 - x2)) / (f(x1) - f(x2)))
-        x2 = temp
-        # print(x1, x2)
-    return x1
-
-
-def medtodaSiecznychDokladnosc(f, a, b, epsilon):
-    # if ((b < a) | (f(a) * f(b) < 0)):
-    #     return "Błąd"
-    x1, x2 = a, b
-    i = 0
-    while (abs(x1 - x2) > epsilon):
-        i = i + 1
-        temp = x1
-        x1 = x1 - ((f(x1) * (x1 - x2)) / (f(x1) - f(x2)))
-        x2 = temp
-        # print(x1,x2)
-    return x1, i
-
-
-# funkcje = [kwadratowa]
-
 # wsp, stp = pobieranieWielomianu()
 # x = int(input("Podaj wartość wielomianu: "))
 
 # print(f"Wartość wielomianu o współczynnikach {wsp} w punkcie {x} wynosi", SchematHornera(x, wsp, stp))
 
-print(metodaBisekcjiIteracje(kwadratowa, -20, 20, 200))
-print(metodaBisekcjiDokladnosc(kwadratowa, -20, 20, 0.00000000001))
-print(medtodaSiecznychIteracje(kwadratowa, -20, 20, 11))
-print(medtodaSiecznychDokladnosc(kwadratowa, -20, 20, 0.00000000001))
+# MENU
+# wyjscie = 1
+# choice = 0
+# while wyjscie:
+#     while True:
+#         print("Wybierz którąs z poniższych funkcji:")
+#         print("1. wielomian")
+#         print("2. trygonometryczna")
+#         print("3. wykładnicza")
+#         print("4. złożenie")
+#         print("5. wjsc z programu")
+#         input(choice)
+#         match choice:
+#             case 1:
+#                 print(metodaBisekcji.metodaBisekcjiIteracje(kwadratowa, -19.8746869, 20, 200000))
+#             case 2:
+#                 print(metodaBisekcji.metodaBisekcjiDokladnosc(kwadratowa, -20, 20, 0.00000000001))
+#             case 3:
+#                 print(metodaSiecznych.medtodaSiecznychIteracje(kwadratowa, -20, 20, 12))
+#             case 4:
+#                 print(metodaSiecznych.medtodaSiecznychDokladnosc(kwadratowa, -20, 20, 0.00000000001))
+#                 break
+#             case 5:
+#                 wyjscie = 0
+#                 break
+            #case _:
+               # print("Podano nieodpowiednią opcje, wybierz poprawną.")
+funkcje = []
+
+print(metodaBisekcji.metodaBisekcjiIteracje(kwadratowa, -19.8746869, 20, 200000))
+print(metodaBisekcji.metodaBisekcjiDokladnosc(kwadratowa, -20, 20, 0.00000000001))
+print(metodaSiecznych.medtodaSiecznychIteracje(kwadratowa, -20, 20, 12))
+print(metodaSiecznych.medtodaSiecznychDokladnosc(kwadratowa, -20, 20, 0.00000000001))
 
 narysujWykres(kwadratowa, -20, 20)
