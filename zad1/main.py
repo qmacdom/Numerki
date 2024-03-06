@@ -33,7 +33,7 @@ def narysujWykres(f, a, b):
 
 
 def kwadratowa(_x):
-    return (_x * _x - 5 * x - 60)
+    return (_x - 5) * (_x + 2) * (_x - 7)
 
 
 def metodaBisekcjiDokladnosc(f, a, b, epislon):
@@ -56,6 +56,7 @@ def metodaBisekcjiDokladnosc(f, a, b, epislon):
 
 
 def metodaBisekcjiIteracje(f, a, b, maxI):
+    i = maxI
     if (maxI < 0):
         return "Liczba iteracji ma być dodatnia!"
     if (f(a) * f(b) < 0):
@@ -69,7 +70,7 @@ def metodaBisekcjiIteracje(f, a, b, maxI):
                 b = x
             else:
                 a = x
-        return x
+        return x, maxI
     else:
         print("Wartości funkcji na krańcach tego przedziału mają ten sam znak!")
         return "Błąd"
@@ -78,42 +79,40 @@ def metodaBisekcjiIteracje(f, a, b, maxI):
 def medtodaSiecznychIteracje(f, a, b, maxI):
     # if ((b < a) | (f(a) * f(b) < 0)):
     #     return "Błąd"
-    x1, x2 = a, b
+    x1, x2, i = a, b, maxI
     while (maxI > 0):
         maxI = maxI - 1
-        temp = x2
-        f1 = f(x1)
-        f2 = f(x2)
+        temp = x1
         x1 = x1 - ((f(x1) * (x1 - x2)) / (f(x1) - f(x2)))
         x2 = temp
+        # print(x1, x2)
     return x1
 
 
-def medtodaSiecznychDokladnosc(f, a, b, dokladnosc):
+def medtodaSiecznychDokladnosc(f, a, b, epsilon):
     # if ((b < a) | (f(a) * f(b) < 0)):
     #     return "Błąd"
     x1, x2 = a, b
     i = 0
-    while (abs(x1 - x2) > dokladnosc):
+    while (abs(x1 - x2) > epsilon):
         i = i + 1
-        temp = x2
-        f1 = f(x1)
-        f2 = f(x2)
+        temp = x1
         x1 = x1 - ((f(x1) * (x1 - x2)) / (f(x1) - f(x2)))
         x2 = temp
+        # print(x1,x2)
     return x1, i
 
 
-funkcje = [kwadratowa]
+# funkcje = [kwadratowa]
 
-wsp, stp = pobieranieWielomianu()
-x = int(input("Podaj wartość wielomianu: "))
+# wsp, stp = pobieranieWielomianu()
+# x = int(input("Podaj wartość wielomianu: "))
 
-print(f"Wartość wielomianu o współczynnikach {wsp} w punkcie {x} wynosi", SchematHornera(x, wsp, stp))
+# print(f"Wartość wielomianu o współczynnikach {wsp} w punkcie {x} wynosi", SchematHornera(x, wsp, stp))
 
-print(metodaBisekcjiIteracje(kwadratowa, -1, 8, 200))
-print(metodaBisekcjiDokladnosc(kwadratowa, -1, 8, 0.0000001))
-print(medtodaSiecznychIteracje(kwadratowa, -2.1, 10.5, 2000))
-#print(medtodaSiecznychDokladnosc(kwadratowa, -2.1, 10.5, 0.01))
+print(metodaBisekcjiIteracje(kwadratowa, -20, 20, 200))
+print(metodaBisekcjiDokladnosc(kwadratowa, -20, 20, 0.00000000001))
+print(medtodaSiecznychIteracje(kwadratowa, -20, 20, 11))
+print(medtodaSiecznychDokladnosc(kwadratowa, -20, 20, 0.00000000001))
 
 narysujWykres(kwadratowa, -20, 20)
