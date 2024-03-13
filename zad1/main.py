@@ -2,12 +2,13 @@ import matplotlib.pyplot as plt
 import metodaBisekcji
 import metodaSiecznych
 import wielomian
+import rysowanie
 
 @staticmethod
-def SchematHornera(x, wspTab, length):
+def SchematHornera(x, wspTab):
     wynik = wspTab[0]  # dzieki temu współczynnik ten
 
-    for stopien in range(length):
+    for stopien in wspTab:
         wynik = wynik * x + wspTab[stopien + 1]
     return wynik
 
@@ -21,22 +22,9 @@ def pobieranieWielomianu():
     return wspTab, stopien
 
 
-def narysujWykres(f, a, b):
-    zbiorf = []
-    zbiorx = []
-    while (a < b):
-        a = a + 0.05
-        zbiorf.append(f(a))
-        zbiorx.append(a)
-    plt.plot(zbiorx, zbiorf)
-    plt.ylabel("y")
-    plt.xlabel("x")
-    plt.grid(True)
-    plt.show()
-
 
 def kwadratowa(_x):
-    return (_x - 5) * (_x + 2) * (_x - 7)
+    return (_x + 2) * (_x - 7)
 
 
 # wsp, stp = pobieranieWielomianu()
@@ -73,10 +61,11 @@ def kwadratowa(_x):
                # print("Podano nieodpowiednią opcje, wybierz poprawną.")
 funkcje = []
 
-print(metodaBisekcji.metodaBisekcjiIteracje(kwadratowa, -19.8746869, 20, 200000))
-print(metodaBisekcji.metodaBisekcjiDokladnosc(kwadratowa, -20, 20, 0.00000000001))
-print(metodaSiecznych.medtodaSiecznychIteracje(kwadratowa, -20, 20, 12))
-print(metodaSiecznych.medtodaSiecznychIteracje(kwadratowa, -20, 20, 13))
-print(metodaSiecznych.medtodaSiecznychDokladnosc(kwadratowa, -20, 20, 0.00000000001))
+print(metodaBisekcji.metodaBisekcjiIteracje(kwadratowa, 0, 20, 200000))
+print(metodaBisekcji.metodaBisekcjiDokladnosc(kwadratowa, 0, 20, 0.00000000001))
+print(metodaSiecznych.medtodaSiecznychIteracje(kwadratowa, 3, 20, 200))
+print(metodaSiecznych.medtodaSiecznychDokladnosc(kwadratowa, 0, 20, 0.00000000001))
 
-narysujWykres(kwadratowa, -20, 20)
+
+
+#rysowanie.narysujWykres(kwadratowa, -10, 5)

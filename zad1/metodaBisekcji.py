@@ -1,3 +1,6 @@
+import rysowanie
+
+
 def metodaBisekcjiDokladnosc(f, a, b, epislon):
     if (f(a) * f(b) < 0):
         x = float(a + b) / 2
@@ -6,11 +9,13 @@ def metodaBisekcjiDokladnosc(f, a, b, epislon):
             i = i + 1
             x = float(a + b) / 2
             if (f(x) == 0):
+                rysowanie.wykresZpunktem(f, a, b, 5, 0, "Metoda Bisekcji Dokladnosc")
                 return x, i
             if (f(a) * f(x) < 0):
                 b = x
             else:
                 a = x
+        rysowanie.wykresZpunktem(f, a, b, x, 0, "Metoda Bisekcji Dokladnosc")
         return x, i
     else:
         print("Funkcja na tym przedziale nie przechodzi przez 0")
