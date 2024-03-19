@@ -25,6 +25,10 @@ def kwadratowa(_x):
     return (_x + 2) * (_x - 7)
 
 
+def wielomian(_x):
+    return 0.5 * _x * _x * _x - 2 * _x * _x + 5 * _x - 5
+
+
 # wsp, stp = pobieranieWielomianu()
 # x = int(input("Podaj wartość wielomianu: "))
 
@@ -66,7 +70,7 @@ while wyjscie:
             wybranaMetoda = int(input("1 - metoda Bisekcji\n2 - metoda Siecznych\nWybierz metodę: "))
             match wybranaMetoda:
                 case 1:
-                    print(metodaBisekcji.metodaBisekcjiIteracje(kwadratowa, a, b, maxI))
+                    print(metodaBisekcji.metodaBisekcjiIteracje(wielomian, a, b, maxI))
                 case 2:
                     print(metodaSiecznych.medtodaSiecznychIteracje(kwadratowa, a, b, maxI))
         case 2:
