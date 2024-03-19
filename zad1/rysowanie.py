@@ -11,7 +11,6 @@ def narysujWykres(f, a, b):
     plt.plot(zbiorx, zbiorf)
     plt.ylabel("y")
     plt.xlabel("x")
-
     plt.grid(True)
     plt.show()
 
@@ -28,6 +27,7 @@ def wykresZpunktem(f, a, b, punktx, punkty, tytul):
     plt.xlabel("x")
     plt.grid(True)
     plt.plot(punktx, punkty, 'ro')
+    plt.annotate(f"[{punktx} , {punkty}]", ((punktx), (punkty)), (punktx-1, punkty + 5))
     plt.title(tytul)
 
     plt.show()

@@ -1,7 +1,10 @@
+import string
+
 import rysowanie
 
 
 def metodaBisekcjiDokladnosc(f, a, b, epislon):
+    A, B = a, b
     if (f(a) * f(b) < 0):
         x = float(a + b) / 2
         i = 0
@@ -9,13 +12,13 @@ def metodaBisekcjiDokladnosc(f, a, b, epislon):
             i = i + 1
             x = float(a + b) / 2
             if (f(x) == 0):
-                rysowanie.wykresZpunktem(f, a, b, 5, 0, "Metoda Bisekcji Dokladnosc")
+                rysowanie.wykresZpunktem(f, A, B, x, f(x), f"Metoda Bisekcji Dokladnosc : {epislon}, liczba iteracji {i}")
                 return x, i
             if (f(a) * f(x) < 0):
                 b = x
             else:
                 a = x
-        rysowanie.wykresZpunktem(f, a, b, x, 0, "Metoda Bisekcji Dokladnosc")
+        rysowanie.wykresZpunktem(f, A, B, x, f(x), f"Metoda Bisekcji Dokladnosc : {epislon}, liczba iteracji {i}")
         return x, i
     else:
         print("Funkcja na tym przedziale nie przechodzi przez 0")
@@ -24,6 +27,7 @@ def metodaBisekcjiDokladnosc(f, a, b, epislon):
 
 def metodaBisekcjiIteracje(f, a, b, maxI):
     i = maxI
+    A, B = a, b
     if (maxI < 0):
         return "Liczba iteracji ma być dodatnia!"
     if (f(a) * f(b) < 0):
@@ -32,12 +36,14 @@ def metodaBisekcjiIteracje(f, a, b, maxI):
             maxI = maxI - 1
             x = float(a + b) / 2
             if (f(x) == 0):
-                return x
+                rysowanie.wykresZpunktem(f, A, B, x, f(x), f"Metoda Bisekcji MaxIteracji {i-maxI}")
+                return x,(i-maxI)
             if (f(a) * f(x) < 0):
                 b = x
             else:
                 a = x
-        return x, maxI
+        rysowanie.wykresZpunktem(f, A, B, x, f(x), f"Metoda Bisekcji MaxIteracji {i-maxI}")
+        return x, (i-maxI)
     else:
         print("Wartości funkcji na krańcach tego przedziału mają ten sam znak!")
         return "Błąd"

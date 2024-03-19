@@ -11,9 +11,9 @@ class wielomian:
             self.wspTab.append(float(input()))
         self.stopien = stopien
 
-    def SchematHornera(self, x, length):
+    def SchematHornera(self, x):
         wynik = self.wspTab[0]  # dzieki temu współczynnik ten
 
-        for stopien in range(length):
+        for stopien in range(self.stopien + 1):
             wynik = wynik * x + self.wspTab[stopien + 1]
         return wynik
