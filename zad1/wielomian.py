@@ -14,6 +14,6 @@ class wielomian:
     def SchematHornera(self, x):
         wynik = self.wspTab[0]  # dzieki temu współczynnik ten
 
-        for stopien in range(self.stopien + 1):
-            wynik = wynik * x + self.wspTab[stopien + 1]
+        for a in range(self.stopien):
+            wynik = wynik * x + self.wspTab[a + 1]
         return wynik

@@ -27,7 +27,7 @@ def wykresZpunktem(f, a, b, punktx, punkty, tytul):
     plt.xlabel("x")
     plt.grid(True)
     plt.plot(punktx, punkty, 'ro')
-    plt.annotate(f"[{punktx} , {punkty}]", ((punktx), (punkty)), (punktx-1, punkty + 5))
+    plt.annotate(f"[{punktx} , {punkty}]", ((punktx), (punkty)),((punktx), (punkty)), ha='center')
     plt.title(tytul)
 
     plt.show()

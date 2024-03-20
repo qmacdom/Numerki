@@ -1,96 +1,67 @@
 import metodaBisekcji
 import metodaSiecznych
+from math import *
 from wielomian import wielomian
+from wykladnicza import wykladnicza
+from trygonometryczna import trygonometryczna
 
 
-# @staticmethod
-# def SchematHornera(x, wspTab):
-#     wynik = wspTab[0]  # dzieki temu współczynnik ten
-#
-#     for stopien in wspTab:
-#         wynik = wynik * x + wspTab[stopien + 1]
-#     return wynik
+def zlozenie(_x):
+    return sin(_x)+(0.1*_x*_x)-1
 
+poczatek = 1
+while poczatek:
 
-# def pobieranieWielomianu():
-#     stopien = int(input("Podaj stopien wielomianu: "))
-#     wspTab = []
-#     for i in reversed(range(int(stopien + 1))):
-#         print(f"Podaj współczynniki wielomianu dla stopnia : {i} ")
-#         wspTab.append(float(input()))
-#     return wspTab, stopien
+    funktor = 0
 
+    wyb = 1
+    while wyb:
+        funktorNumer = int(input("Dostępne funkcje: \n1 - wielomian\n2 - trygonometryczna\n3 - wykładnicza\n4 - złożenie\nWybór: "))
+        match funktorNumer:
+            case 1:
+                funktor = wielomian().SchematHornera
+                wyb = 0
+            case 2:
+                funktor = trygonometryczna().wartosc
+                wyb = 0
+            case 3:
+                funktor = wykladnicza().wartosc
+                wyb = 0
+            case 4:
+                funktor = zlozenie
+                wyb = 0
+            case _:
+                print("Wybrano niedostępną opcję")
 
-def kwadratowa(_x):
-    return (_x + 2) * (_x - 7)
-
-
-def wielomian(_x):
-    return 0.5 * _x * _x * _x - 2 * _x * _x + 5 * _x - 5
-
-
-# wsp, stp = pobieranieWielomianu()
-# x = int(input("Podaj wartość wielomianu: "))
-
-# print(f"Wartość wielomianu o współczynnikach {wsp} w punkcie {x} wynosi", SchematHornera(x, wsp, stp))
-
-# asd = wielomian()
-
-# tablica_funkcji = [kwadratowa, asd.SchematHornera]
-# wiel = 0
-# input()
-# if(True):
-#     wiel = wielomian()
-# else:
-#     print("dadadad")
-
-# print((tablica_funkcji[1](5)))
-
-# MENU
-# wyjscie = 1
-# while wyjscie:
-#     while True:
-#         print("Wybierz którąs z poniższych funkcji:")
-#         print("1. wielomian")
-#         print("2. trygonometryczna")
-#         print("3. wykładnicza")
-#         print("4. złożenie")
-#         print("5. wjsc z programu")
-
-
-a = float(input("Podaj lewy przedział: "))
-b = float(input("Podaj prawy przedział: "))
-warStopu = 0
-wyjscie = 1
-while wyjscie:
-    warStopu = int(input("1 - iteracje \n2 - dokładność\nWybierz ograniczenie: "))
-    match warStopu:
-        case 1:
-            maxI = int(input("Podaj liczbę iteracji: "))
-            wybranaMetoda = int(input("1 - metoda Bisekcji\n2 - metoda Siecznych\nWybierz metodę: "))
-            match wybranaMetoda:
-                case 1:
-                    print(metodaBisekcji.metodaBisekcjiIteracje(wielomian, a, b, maxI))
-                case 2:
-                    print(metodaSiecznych.medtodaSiecznychIteracje(kwadratowa, a, b, maxI))
-        case 2:
-            epsilon = int(input("Podaj dokładność (epsilon) : "))
-            wybranaMetoda = int(input("1 - metoda Bisekcji\n2 - metoda Siecznych\nWybierz metodę: "))
-            match wybranaMetoda:
-                case 1:
-                    print(metodaBisekcji.metodaBisekcjiDokladnosc(kwadratowa, a, b, epsilon))
-                case 2:
-                    print(metodaSiecznych.medtodaSiecznychDokladnosc(kwadratowa, a, b, epsilon))
-        case 3:
-            print("Idziemy wyżej.")
-            break
-        case _:
-            print("Podano nieodpowiednią opcje, wybierz poprawną.")
-funkcje = []
-
-# print(metodaBisekcji.metodaBisekcjiIteracje(kwadratowa, 0, 20, 200000))
-# print(metodaBisekcji.metodaBisekcjiDokladnosc(kwadratowa, 0, 20, 0.00000000001))
-# print(metodaSiecznych.medtodaSiecznychIteracje(kwadratowa, 3, 20, 200))
-# print(metodaSiecznych.medtodaSiecznychDokladnosc(kwadratowa, 3, 20, 0.00000000001))
-
-# rysowanie.narysujWykres(kwadratowa, -10, 10)
+    a = float(input("Podaj lewy przedział: "))
+    b = float(input("Podaj prawy przedział: "))
+    warStopu = 0
+    wyjscie = 1
+    while wyjscie:
+        warStopu = int(input("1 - iteracje \n2 - dokładność\n0 - wyjscie z programu\n9 - powrót do poczatku programu\nWybierz ograniczenie: "))
+        match warStopu:
+            case 1:
+                maxI = int(input("Podaj liczbę iteracji: "))
+                wybranaMetoda = int(input("1 - metoda Bisekcji\n2 - metoda Siecznych\nWybierz metodę: "))
+                match wybranaMetoda:
+                    case 1:
+                        print(metodaBisekcji.metodaBisekcjiIteracje(funktor, a, b, maxI))
+                    case 2:
+                        print(metodaSiecznych.medtodaSiecznychIteracje(funktor, a, b, maxI))
+            case 2:
+                epsilon = float(input("Podaj dokładność (epsilon) : "))
+                wybranaMetoda = int(input("1 - metoda Bisekcji\n2 - metoda Siecznych\nWybierz metodę: "))
+                match wybranaMetoda:
+                    case 1:
+                        print(metodaBisekcji.metodaBisekcjiDokladnosc(funktor, a, b, epsilon))
+                    case 2:
+                        print(metodaSiecznych.medtodaSiecznychDokladnosc(funktor, a, b, epsilon))
+            case 9:
+                print("Wracamy do poczatku.")
+                break
+            case 0:
+                print("Wyjście z programu.")
+                poczatek=0
+                break
+            case _:
+                print("Podano nieodpowiednią opcje, wybierz poprawną.")
