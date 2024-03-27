@@ -10,7 +10,7 @@ def medtodaSiecznychIteracje(f, a, b, maxI):
             if (f(x_n) == f(x__1)):
                 if(((x_n < a)) | ((x_n) > b)):
                     print("Metoda znalazła poprawne miejsce zerowe, jednak z racji na jej działanie, jest ono poza podanym zakresem.")
-                rysowanie.wykresZpunktem(f, a, b, x_n, f(x_n),f"Metoda Siecznych maxI : {i}, liczba iteracji {i-maxI}")
+                rysowanie.wykresZpunktem(f, a, b, x_n, f(x_n), f"Metoda Siecznych maxI : {i}, liczba iteracji {i - maxI}")
                 return x_n,f(x_n) ,(i-maxI)
             x_n = x_n - ((f(x_n) * (x_n - x__1)) / (f(x_n) - f(x__1)))
 

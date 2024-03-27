@@ -1,5 +1,3 @@
-import string
-
 import rysowanie
 
 
@@ -36,13 +34,13 @@ def metodaBisekcjiIteracje(f, a, b, maxI):
             maxI = maxI - 1
             x = float(a + b) / 2
             if (f(x) == 0):
-                rysowanie.wykresZpunktem(f, A, B, x, f(x), f"Metoda Bisekcji MaxIteracji {i} wykonano {i-maxI}")
+                rysowanie.wykresZpunktem(f, A, B, x, f(x), f"Metoda Bisekcji MaxIteracji {i} wykonano {i - maxI}")
                 return x,f(x),(i-maxI)
             if (f(a) * f(x) < 0):
                 b = x
             else:
                 a = x
-        rysowanie.wykresZpunktem(f, A, B, x, f(x), f"Metoda Bisekcji MaxIteracji {i} wykonano {i-maxI}")
+        rysowanie.wykresZpunktem(f, A, B, x, f(x), f"Metoda Bisekcji MaxIteracji {i} wykonano {i - maxI}")
         return x,f(x),(i-maxI)
     else:
         print("Wartości funkcji na krańcach tego przedziału mają ten sam znak!")
